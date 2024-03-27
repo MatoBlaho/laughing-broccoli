@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    box-sizing: border-box;    
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(#dcd6ff, #220049, #3a077c, #662bc5);
+    background-size: 400% 400%;
+}
+
+.zaklad {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    height: 100vh;
+}
+
+.logout {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
