@@ -1,3 +1,5 @@
+/* welcome.css */
+
 * {
     margin: 0;
     box-sizing: border-box;    
@@ -5,26 +7,110 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(#dcd6ff, #220049, #3a077c, #662bc5);
-    background-size: 400% 400%;
-}
-
-.zaklad {
+    background-image: url('dark-minimal-mountains.png');
+    background-size: cover;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-height: 100vh;
+    background-position: center;
     align-items: center;
-    margin: auto;
-    height: 100vh;
 }
 
-a {
-    color: white;
+.wrapper {
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.messages {
+    margin-bottom: 20px;
+}
+
+.messages .success-message,
+.messages .error-message {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.messages .success-message {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.messages .error-message {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    margin-right: 10px;
+    color: #fff;
+}
+
+select {
+    padding: 8px;
+    margin-right: 10px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #f00;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #690a0a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #e31414;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.logout-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logout-link a {
+    color: #851212;
     text-decoration: none;
     font-weight: 600;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-span {
+.logout-link a:hover {
     text-decoration: underline;
 }
