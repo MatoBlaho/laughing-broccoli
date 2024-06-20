@@ -1,16 +1,16 @@
 <?php
 session_start();
-
+$error_message = '';
 if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['password'])) {
     $servername = "localhost";
-    $username = "Blahusiak3A2";
+    $username = "andel3A2";
     $password = "123";
-    $dbname = "blahusiak3A2";
+    $dbname = "andelm";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     if ($conn->connect_error) {
-        echo "<p class='error-message'>Connection failed: " . $conn->connect_error . "</p>";
+        $error_message = "<p class='error-message'>Connection failed: " . $conn->connect_error . "</p>";
     } else {
         $sql = "SELECT * FROM users WHERE username = '" . $_POST['username'] . "'";
         $result = $conn->query($sql);
@@ -25,10 +25,10 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
                 header("Location: welcome.php");
                 exit();
             } else {
-                echo "<p class='error-message'>Wrong password</p>";
+                $error_message = "<p class='error-message'>Wrong password</p>";
             }
         } else {
-            echo "<p class='error-message'>User not found</p>";
+            $error_message = "<p class='error-message'>User not found</p>";
         }
 
         $conn->close();
@@ -37,19 +37,34 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
 ?>
 
 
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login form</title>
     <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-<div class="zaklad">
+<div class="wrapper">
+    <?php
+        echo $error_message; 
+    ?>
     <form action="index.php" method="post">
-        <h1>Prihláste sa</h1>
-        <input type="text" name="username" placeholder="username" required autofocus><br>
-        <input type="password" name="password" placeholder="password" required>
-        <button type="submit" name="submit">Prihlásiť sa</button>
-        <a href="register.php" id="Register">Registrovať sa</a>
+        <h1>Login</h1>
+        <div class="input-box">
+            <input type="text" name="username" placeholder="Username" required autofocus>
+            <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="password" name="password" placeholder="Password" required>
+            <i class='bx bxs-lock-alt' ></i>
+        </div>
+        <button type="submit" name="submit" class="btn">Login</button>
+        <div class="register-link">
+            <p>Don't have an account? <a href="register.php" id="Register">Register</a></p>
+        </div>
     </form>
 </div>
 </body>
