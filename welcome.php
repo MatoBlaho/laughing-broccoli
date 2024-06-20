@@ -1,4 +1,4 @@
-?php
+<?php
 session_start();
 
 if(!isset($_SESSION['valid']) || $_SESSION['valid'] !== true) {
@@ -7,9 +7,9 @@ if(!isset($_SESSION['valid']) || $_SESSION['valid'] !== true) {
 }
 
 $servername = "localhost";
-$username = "Blahusiak3A2";
+$username = "andel3A2";
 $password = "123";
-$dbname = "blahusiak3A2";
+$dbname = "andelm";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -25,7 +25,10 @@ if(isset($_GET['sort_by'])) {
     $order = $_GET['order'];
 }
 
-$sql = "SELECT * FROM products ORDER BY $sort_by $order";
+$sql = "SELECT products.id, products.name, products.price, products.quantity, categories.system as system
+        FROM products
+        LEFT JOIN categories ON products.system = categories.id
+        ORDER BY $sort_by $order";
 $result = $conn->query($sql);
 
 $total_products = $result->num_rows;
@@ -95,6 +98,7 @@ if ($total_products > 0) {
                     <th>Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
+                    <th>System</th>
                 </tr>
             </thead>
             <tbody>
@@ -107,10 +111,11 @@ if ($total_products > 0) {
                         echo "<td>".$row['name']."</td>";
                         echo "<td>".$row['price']."</td>";
                         echo "<td>".$row['quantity']."</td>";
+                        echo "<td>".$row['system']."</td>";
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='4'>No records found</td></tr>";
+                    echo "<tr><td colspan='5'>No records found</td></tr>";
                 }
                 ?>
             </tbody>
@@ -121,6 +126,10 @@ if ($total_products > 0) {
     </div>
 </body>
 </html>
+
+<?php
+$conn->close();
+?>
 
 <?php
 $conn->close();
